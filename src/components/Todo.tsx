@@ -1,19 +1,24 @@
-import { useTodosIds } from "../services/queries";
+import { useTodos, useTodosIds } from "../services/queries";
 
 const Todo = () => {
   const todosIdsQUery = useTodosIds();
+  const todosQueries = useTodos(todosIdsQUery.data)
 
-  if (todosIdsQUery.isPending) {
-    return <div>Loading...</div>;
-  }
-  if (todosIdsQUery.isError) {
-    return <div>Error: {todosIdsQUery.error.message}</div>;
-  }
   return (
-    <div>
-      {todosIdsQUery.data?.map((id) => (
-        <div key={id}>Todo {id}</div>
-      ))}
+    <div className="">
+      <ul>
+        {todosQueries.map(({data}) => (
+            <li key={data?.id}>
+                <div>Id: {data?.id}</div>
+                <span>
+                    <strong>Title:</strong>{data?.title}, {" "}
+                    <strong>Description:</strong> {data?.description}
+                </span>
+
+            </li>
+        ))}
+      
+      </ul>
     </div>
   );
 };
