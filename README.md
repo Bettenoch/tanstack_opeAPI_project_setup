@@ -1,50 +1,95 @@
-# React + TypeScript + Vite
+# React TypeScript Vite App with HeyApi, Tanstack Query, and Tanstack Router
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Table of Contents
 
-Currently, two official plugins are available:
+- [Introduction](#introduction)
+- [Technologies Used](#technologies-used)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Key Features](#key-features)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Introduction
 
-## Expanding the ESLint configuration
+This project demonstrates the integration of [HeyApi](https://heyapi.co), [Tanstack Query](https://tanstack.com/query), and [Tanstack Router](https://tanstack.com/router) in a modern React application built with TypeScript and Vite. The goal is to showcase a real-world example of how to manage API requests, client-side caching, and routing in a performant and scalable React application.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+By combining these powerful tools, this project helps developers build efficient data-fetching strategies, optimize user experiences, and create maintainable applications with minimal configuration overhead.
 
-- Configure the top-level `parserOptions` property like this:
+## Technologies Used
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **React** - A JavaScript library for building user interfaces
+- **TypeScript** - A typed superset of JavaScript that compiles to plain JavaScript
+- **Vite** - A fast development build tool
+- **HeyApi** - A powerful API service for building and managing APIs easily
+- **Tanstack Query** - A powerful asynchronous state management library for handling API requests and caching
+- **Tanstack Router** - A lightweight routing solution optimized for React
+
+## Project Structure
+- **Prerequisites**
+Make sure you have the following installed on your system:
+
+Node.js (v14 or higher)
+npm or yarn
+# Getting Started
+
+## Prerequisites
+
+Make sure you have the following installed on your system:
+
+- Node.js (v14 or higher)
+- npm or yarn
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+```
+## Key Features
+
+- API Management with HeyApi: Integration with HeyApi for seamless API request handling.
+- Data Fetching Caching with Tanstack Query: Efficiently fetch and cache data to improve performance.
+- Routing with Tanstack Router: Lightweight and modern routing for React applications.
+- TypeScript Support: Ensures type safety and scalability with TypeScript throughout the app.
+- Vite for Fast Builds: Instant server start and fast hot module replacement (HMR) during development.
+
+## Usage
+1. To define API endpoints and manage data fetching, navigate to the src/api and src/services directories.
+2. To add routes, use the src/router directory where Tanstack Router is configured.
+3. Reusable components can be added to the src/components folder to keep your UI modular.
+
+## Example Code Snippet
+
+Here's a brief example of how to set up Tanstack Query with HeyApi:
+
+```tsx
+import { useQuery } from '@tanstack/react-query';
+import { fetchData } from './api';
+
+const MyComponent = () => {
+  const { data, isLoading, error } = useQuery(['key'], fetchData);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error loading data</p>;
+
+  return <div>{data?.message}</div>;
+};
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Contributing
+- Contributions are welcome! If you’d like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcomed.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. Fork the project
+2. Create a feature branch (git checkout -b feature/AmazingFeature)
+3. Commit your changes (git commit -m 'Add some AmazingFeature')
+4. Push to the branch (git push origin feature/AmazingFeature)
+5. Open a Pull Request
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## License
+This project is licensed under the MIT License - see the **LICENSE** file for details.
